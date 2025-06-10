@@ -44,7 +44,10 @@ const Header = () => {
         {
           user ? <button onClick={handleLogout} className="btn">Logout</button> : <Link to="/auth/login" className="btn">Login</Link>
         }
-        <Link to="/auth/signup" className="btn">Sign Up</Link>
+        {
+          user ? " " : <Link to="/auth/signup" className="btn">Register</Link>
+        }
+        
         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
           <div className="w-10 rounded-full">
             <img
