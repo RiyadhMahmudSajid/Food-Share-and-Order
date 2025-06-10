@@ -11,6 +11,7 @@ import AvailableFoods from "../components/AvailableFoods";
 import AddFood from "../components/AddFood";
 import MyFoods from "../components/MyFoods";
 import FoodRequest from "../components/FoodRequest";
+import PrivateRoute from "../provider/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -27,15 +28,18 @@ const router = createBrowserRouter([
       },
       {
         path:"/AddFood",
-        element:<AddFood></AddFood>
+
+        element:<PrivateRoute>
+          <AddFood></AddFood>
+        </PrivateRoute>
       },
       {
         path:"/MyFoods",
-        element:<MyFoods></MyFoods>
+        element:<PrivateRoute><MyFoods></MyFoods></PrivateRoute>
       },
       {
         path:"/FoodRequest",
-        element:<FoodRequest></FoodRequest>
+        element:<PrivateRoute><FoodRequest></FoodRequest></PrivateRoute>
       }
 
     ]
