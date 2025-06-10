@@ -1,12 +1,14 @@
 import React, { use, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { AuthContext } from '../provider/AuthProvider';
+import { useNavigate } from 'react-router';
 
 const Ragister = () => {
     const [show, setShow] = useState(false)
-    const {createUser,setUser} = use(AuthContext)
+    const { createUser, setUser, updateUser } = use(AuthContext)
+    const navigate = useNavigate();
     const handleRegister = (e) => {
-         e.preventDefault();
+        e.preventDefault();
         const form = e.target;
         const name = form.name.value;
         const photo = form.photo.value;
@@ -15,12 +17,16 @@ const Ragister = () => {
         createUser(email, password)
             .then(result => {
                 const user = result.user
-                setUser(user)
-                // alert(user)
+                updateUser({ displayName: name, photoURL: photo }).then(() => {
+                    setUser({ ...user, displayName: name, photoURL: photo })
+                    navigate("/")
+                }).catch((error) => {
+                    setUser(user)
+                })
 
             }).catch((error) => {
                 const errorMessage = error.message;
-               alert(errorMessage)
+                alert(errorMessage)
 
             })
     }
@@ -40,7 +46,7 @@ const Ragister = () => {
 
                         <div className='relative'>
                             <label className="label">Password</label>
-                            <input type={show ? 'text' : 'password'}  name="password" className="input" placeholder="Password" />
+                            <input type={show ? 'text' : 'password'} name="password" className="input" placeholder="Password" />
 
                             <button onClick={() => { setShow(!show) }} className='btn btn-xs absolute top-6.5 right-6'>
                                 {

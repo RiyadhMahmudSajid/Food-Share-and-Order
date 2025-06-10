@@ -1,11 +1,13 @@
 import React, { use, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { AuthContext } from '../provider/AuthProvider';
+import { useLocation, useNavigate } from 'react-router';
 
 const Login = () => {
     const { login } = use(AuthContext)
     const [show, setShow] = useState(false)
-
+    const location = useLocation();
+    const navigate = useNavigate();
     const handleLogin = e => {
         e.preventDefault();
         const form = e.target;
@@ -13,6 +15,7 @@ const Login = () => {
         const password = form.password.value;
         login(email, password).then((result)=>{
             const user = result.user
+             navigate(`${location.state ? location.state : "/"}`)
             alert(user)
 
         }).catch(()=>{
