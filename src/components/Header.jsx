@@ -3,13 +3,13 @@ import { Link, NavLink } from 'react-router';
 import './Header.css'
 import { AuthContext } from '../provider/AuthProvider';
 const Header = () => {
-  const {user,logoutUser} = use(AuthContext)
-  const  handleLogout = ()=>{
-     logoutUser().then(()=>{
+  const { user, logoutUser } = use(AuthContext)
+  const handleLogout = () => {
+    logoutUser().then(() => {
       alert('success')
-     }).catch(()=>{
+    }).catch(() => {
       alert('unsuccess')
-     })
+    })
   }
   const links = <>
     <NavLink to="/" className="mr-4 uppercase text-white">  Home</NavLink>
@@ -21,7 +21,7 @@ const Header = () => {
   </>
   return (
     <div className="navbar  shadow-sm bg-gray-800">
-      <h2>{user ? user.email : " "}</h2>
+
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -47,7 +47,7 @@ const Header = () => {
         {
           user ? " " : <Link to="/auth/signup" className="btn">Register</Link>
         }
-        
+
         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
           <div className="w-10 rounded-full">
             <img
