@@ -1,14 +1,35 @@
 import React, { use } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const AddFood = () => {
 
-    const handleAddFood = e =>{
+    const handleAddFood = e => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
         const foodData = Object.fromEntries(formData.entries())
-        console.log(foodData)
+        // console.log(foodData)
+
+        //save job to the database
+
+        axios.post('http://localhost:3000/foods', foodData)
+            .then(function (response) {
+                if (response.data.insertedId) {
+                 
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your data has been saved",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     const { user } = use(AuthContext)
@@ -69,7 +90,7 @@ const AddFood = () => {
                     <fieldset className="fieldset  border-base-300 rounded-box  border p-4">
 
                         <label className="label">Food Status </label>
-                        <input type="text" className="input w-full" name="FoodStatus" value="available" readOnly required />
+                        <input type="text" className="input w-full" name="FoodStatus" value="available"  required />
 
                     </fieldset>
 
