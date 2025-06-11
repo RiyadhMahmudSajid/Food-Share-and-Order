@@ -1,11 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const AvailableFoodCard = ({ food }) => {
     const {
         FoodImage,
         foodName,
         quantity,
-        Location
+        Location,
+        _id
     } = food
     return (
         <div className="card bg-base-100 shadow-sm">
@@ -24,7 +26,7 @@ const AvailableFoodCard = ({ food }) => {
                     Location}</h2>
                 <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
                 <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Buy Now</button>
+                   <Link to={`/foods/${_id}`}><button className="btn btn-primary">View Details</button></Link>
                 </div>
             </div>
         </div>
