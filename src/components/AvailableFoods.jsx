@@ -6,6 +6,7 @@ const AvailableFoods = () => {
     const [search,setSearch] = useState("")
     const [sort,setSort] = useState("")
     const [foodData,setFoodData] = useState([])
+    const [three,setThree] = useState(true)
     useEffect(()=>{
         fetch(`http://localhost:3000/foods?searchParams=${search}&sort=${sort}`)
         .then((res) =>res.json())
@@ -25,11 +26,15 @@ const AvailableFoods = () => {
                  <div className='flex gap-2'>
                     <button className='btn btn-secondary' onClick={()=>setSort('asc')}>Sort ASC</button>
                     <button  className='btn btn-secondary' onClick={()=>setSort('desc')}>Sort DESC</button>
+                    <button className='btn btn-accent' onClick={()=>setThree(!three) }>
+                        Change Layout
+                    </button>
                  </div>
             </div>
            {
              availableFoods.length > 0 ? (
-                <div className='grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-14'>
+             
+                <div className={`grid grid-cols-1 ${three ? 'md:grid-cols-3' : 'md:grid-cols-2'} gap-4 md:gap-14 `}>
                     {
                         availableFoods.map(availableFood => (
                             <AvailableFoodCard key={availableFood._id} food = {availableFood} ></AvailableFoodCard>

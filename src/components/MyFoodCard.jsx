@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router';
 
 
-const MyFoodCard = ({ myfoo ,onDelete }) => {
-   
-    
-    const { FoodImage, foodName, quantity, Location, _id } = myfoo
+
+const MyFoodCard = ({ myfoo, onDelete }) => {
+
   
+    const { FoodImage, foodName, quantity, Location, _id } = myfoo
+
     return (
         <div>
             <div className="card bg-base-100 shadow-sm">
@@ -27,8 +29,12 @@ const MyFoodCard = ({ myfoo ,onDelete }) => {
                 </div>
                 <div className='flex justify-between'>
 
-                    <button onClick={() =>onDelete(_id)} className='btn  btn-warning'>Delete</button>
-                    <button className='btn btn-error'>Update</button>
+                    <button onClick={() => onDelete(_id)} className='btn  btn-warning'>Delete</button>
+                    {/* Open the modal using document.getElementById('ID').showModal() method */}
+                   
+                     <Link className='btn btn-error' to={`/update/${_id}`}> Update</Link>
+                    
+                   
                 </div>
             </div>
         </div>
