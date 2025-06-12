@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const MyFoodCard = ({ myfoo }) => {
-    const { FoodImage, foodName , quantity ,Location} = myfoo
+
+const MyFoodCard = ({ myfoo ,onDelete }) => {
+   
+    
+    const { FoodImage, foodName, quantity, Location, _id } = myfoo
+  
     return (
         <div>
             <div className="card bg-base-100 shadow-sm">
@@ -19,7 +23,12 @@ const MyFoodCard = ({ myfoo }) => {
 
                         Location}</h2>
                     <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-                    
+
+                </div>
+                <div className='flex justify-between'>
+
+                    <button onClick={() =>onDelete(_id)} className='btn  btn-warning'>Delete</button>
+                    <button className='btn btn-error'>Update</button>
                 </div>
             </div>
         </div>
