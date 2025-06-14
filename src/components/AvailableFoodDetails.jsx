@@ -1,9 +1,42 @@
-import React from 'react';
+import React, { use, useState } from 'react';
 import { useLoaderData } from 'react-router';
+import { AuthContext } from '../provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const AvailableFoodDetails = () => {
-    const {FoodImage} = useLoaderData();
-    
+    const { FoodImage, foodName, quantity, Location, _id, ExpiredDate, Notes, DonorImage, DonorName, DonorEmail, FoodStatus } = useLoaderData();
+    const [note, setNote] = useState("");
+    const { user } = use(AuthContext)
+ 
+     const handleRequest = () => {
+            const requestDate = new Date().toISOString();
+            const requestData = {
+                foodId:_id,
+                foodName:foodName,
+                foodImage:FoodImage,
+                 donorName:DonorName,
+                  donorEmail:DonorEmail,
+                 userEmail: user?.email,
+                 requestDate,
+                 pickupLocation:Location,
+                  expiredDate:ExpiredDate,
+                  notes:note,
+                  status:"requested"                 
+
+
+            }
+            fetch('http://localhost:3000/food-req',{
+                method: 'POST',
+                headers:{'Content-Type':'application/json'},
+                body: JSON.stringify(requestData)
+            }).then(res => res.json())
+            .then(data =>{
+                if(data.success){
+                    Swal.fire('Success','Request placed','success')
+                    document.getElementById('requestModal').closest()
+                }
+            })
+     }
     return (
         <div>
             <div className="card bg-base-100 w-96 shadow-sm">
@@ -13,13 +46,42 @@ const AvailableFoodDetails = () => {
                         alt="Shoes" />
                 </figure>
                 <div className="card-body">
-                    <h2 className="card-title">Card Title</h2>
-                    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-                    <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Buy Now</button>
-                    </div>
+                    <h2 className="card-title">{foodName}</h2>
+                    <p>{quantity}</p>
+                    <p>{Location}</p>
+                    <p>{ExpiredDate}</p>
+                    <p>{FoodStatus}</p>
+                    <p>{Notes}</p>
+
+                    <button className="btn" onClick={() => document.getElementById('my_modal_1').showModal()}>open modal</button>
                 </div>
             </div>
+            <dialog id="my_modal_1" className="modal">
+                <div className="modal-box">
+                    <p>{foodName}</p>
+                    <p>{FoodImage}</p>
+                    <p>{_id}</p>
+                    <p>{DonorEmail}</p>
+                    <p>{DonorName}</p>
+                    <p>{user?.email}</p>
+                    <p>{new Date().toLocaleString()}</p>
+                    <p>{Location}</p>
+                    <p>{ExpiredDate}</p>
+
+                    <textarea className=' textarea textarea-bordered w-full' value={note} onChange={e => setNote(e.target.value)}>
+
+                    </textarea>
+
+                    <p className="py-4">Press ESC key or click the button below to close</p>
+                    <div className="modal-action">
+                        <form method="dialog">
+                            {/* if there is a button in form, it will close the modal */}
+                            <button onClick={handleRequest} className="btn">Close</button>
+                        </form>
+
+                    </div>
+                </div>
+            </dialog>
         </div>
     );
 };
