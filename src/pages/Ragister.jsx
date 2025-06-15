@@ -80,7 +80,7 @@ const Ragister = () => {
                             <label className="label">Password</label>
                             <input type={show ? 'text' : 'password'} name="password" className="input" placeholder="Password" required/>
 
-                            <button type='submit' onClick={() => { setShow(!show) }} className='btn btn-xs absolute top-6.5 right-6'>
+                            <button type="button"  onClick={() => { setShow(!show) }} className='btn btn-xs absolute top-6.5 right-6'>
                                 {
                                     show ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>
                                 }

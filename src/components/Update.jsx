@@ -1,16 +1,35 @@
 import React, { use } from 'react';
 import { useLoaderData } from 'react-router';
 import { AuthContext } from '../provider/AuthProvider';
+import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
 
 const Update = () => {
-    const {user} = use(AuthContext)
-    const {foodName, FoodImage,quantity,Location,ExpiredDate,Notes,DonorImage,DonorName,DonorEmail,FoodStatus} = useLoaderData()
-     const handleAddFood = e => {
+    const { user } = use(AuthContext)
+    const { foodName, FoodImage, quantity, Location, ExpiredDate, Notes, DonorImage, DonorName, DonorEmail, FoodStatus, _id } = useLoaderData()
+    const handleAddFood = e => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
         const foodData = Object.fromEntries(formData.entries())
-        
+        fetch(`http://localhost:3000/foods/${_id}`, {
+            method: 'PUT',
+            headers: { 'content-Type': 'application/json' },
+            body: JSON.stringify(foodData)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success('Successfully Update')
+                }
+                else {
+                    toast.info('No change were made')
+                }
+            }).catch(err => {
+                toast.error('Something Wrong')
+            })
+
+
     }
     return (
         <div>

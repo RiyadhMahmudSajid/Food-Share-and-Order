@@ -1,7 +1,9 @@
 import React, {useState } from 'react';
 
 import AvailableFoodCard from './AvailableFoodCard';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
+
 
 const fetchFoods = async ({ queryKey }) => {
     const [_key, search, sort] = queryKey;
@@ -17,9 +19,9 @@ const AvailableFoods = () => {
     const [sort, setSort] = useState("")
     
     const [three, setThree] = useState(true)
-
+    const queryClient = useQueryClient();
    
-     
+   //useQuery featching food data  
     const {data : foodData = [] , isLoading} = useQuery({
         queryKey  : ['foods',search , sort],
         queryFn: fetchFoods
@@ -27,13 +29,33 @@ const AvailableFoods = () => {
   
 
     const availableFoods = foodData.filter(food => food.FoodStatus === "available")
+    
+    const {mutate: requestFood} = useMutation({
+        mutationFn: async (id) =>{
+            const res = await fetch(`http://localhost:3000/foods/${id}`, {
+            method: 'PATCH',
+            headers: { 'content-Type': 'application/json' },
+            body: JSON.stringify({FoodStatus:'requested'})
+        })
+        return res.json();
+        },
+        onSuccess:(data) =>{
+            if (data.modifiedCount > 0){
+                toast.success('Food request')
+                queryClient.invalidateQueries({queryKey:['foods']})
 
+            }else{
+                toast.info('No change')
+            }
+        },
+        onError: () => toast.error('Request fail')
+    })
 
     return (
         <div className='max-w-6xl mx-auto p-4'>
             <div className='mb-6'>
                 <input type="text"
-                    placeholder="Warning"
+                    placeholder="Search"
                     onChange={(e) => setSearch(e.target.value)}
                     className="input input-warning" />
                 <div className='flex gap-2'>
@@ -48,7 +70,7 @@ const AvailableFoods = () => {
                 isLoading ? (<p>Loading...</p>) :
                 availableFoods.length > 0 ? (
 
-                    <div className={`grid grid-cols-1 ${three ? 'md:grid-cols-3' : 'md:grid-cols-2'} gap-4 md:gap-14 `}>
+                    <div className={`grid ${three ? 'grid-cols-3' : 'grid-cols-2'} gap-4 md:gap-14 `}>
                         {
                             availableFoods.map(availableFood => (
                                 <AvailableFoodCard key={availableFood._id} food={availableFood} ></AvailableFoodCard>

@@ -25,8 +25,8 @@ const FoodRequest = () => {
         <div>
             {
                 loading ? (<p>Loading....</p>) : (
-                    myFood.length === 0 ? (<p>You have no Food</p>) : (
-                        <div className='max-w-7xl mx-auto'>
+                    myFood.length === 0 ? (<p className='min-h-80'>You have no Food</p>) : (
+                        <div className='max-w-7xl mx-auto min-h-80'>
                             <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
                                 <table className="table  bg-amber-200">
                                     {/* head */}

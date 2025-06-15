@@ -7,36 +7,36 @@ const AvailableFoodDetails = () => {
     const { FoodImage, foodName, quantity, Location, _id, ExpiredDate, Notes, DonorImage, DonorName, DonorEmail, FoodStatus } = useLoaderData();
     const [note, setNote] = useState("");
     const { user } = use(AuthContext)
- 
-     const handleRequest = () => {
-            const requestDate = new Date().toISOString();
-            const requestData = {
-                foodId:_id,
-                foodName:foodName,
-                foodImage:FoodImage,
-                 donorName:DonorName,
-                  donorEmail:DonorEmail,
-                 userEmail: user?.email,
-                 requestDate,
-                 pickupLocation:Location,
-                  expiredDate:ExpiredDate,
-                  notes:note,
-                  status:"requested"                 
+
+    const handleRequest = () => {
+        const requestDate = new Date().toISOString();
+        const requestData = {
+            foodId: _id,
+            foodName: foodName,
+            foodImage: FoodImage,
+            donorName: DonorName,
+            donorEmail: DonorEmail,
+            userEmail: user?.email,
+            requestDate,
+            pickupLocation: Location,
+            expiredDate: ExpiredDate,
+            notes: note,
+            status: "requested"
 
 
-            }
-            fetch('http://localhost:3000/food-req',{
-                method: 'POST',
-                headers:{'Content-Type':'application/json'},
-                body: JSON.stringify(requestData)
-            }).then(res => res.json())
-            .then(data =>{
-                if(data.success){
-                    Swal.fire('Success','Request placed','success')
+        }
+        fetch('http://localhost:3000/food-req', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(requestData)
+        }).then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire('Success', 'Request placed', 'success')
                     document.getElementById('requestModal').closest()
                 }
             })
-     }
+    }
     return (
         <div>
             <div className="card bg-base-100 w-96 shadow-sm mt-6 mx-auto">
@@ -72,12 +72,12 @@ const AvailableFoodDetails = () => {
 
                     </textarea>
 
-                    <button  onClick={handleRequest} className="btn">Submit</button>
+
                     <div className="modal-action">
                         <form method="dialog">
-                            {/* if there is a button in form, it will close the modal */}
-                            
-                            <button  className="btn">close</button>
+                            <button onClick={handleRequest} className="btn">Submit</button>
+
+                            <button className="btn">close</button>
                         </form>
 
                     </div>

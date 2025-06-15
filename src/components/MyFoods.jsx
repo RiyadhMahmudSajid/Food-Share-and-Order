@@ -68,7 +68,7 @@ const MyFoods = () => {
 
             {
                 loading ? (<p>Loading...</p>) :
-                    myFood.length === 0 ? (<p>You have no Food</p>) : (
+                    myFood.length === 0 ? (<p className='min-h-80'>You have no Food</p>) : (
 
                         <>
                             <h2 className='text-2xl text-gray-500 font-medium mb-6 text-center'> See My Food </h2>

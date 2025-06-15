@@ -35,7 +35,7 @@ const Home = () => {
                             delaySpeed={700}></Typewriter>
 
                         </span> {''} Recipies</h1>
-                        <p className="mb-5 ml-6">
+                        <p className="mb-5 pl-8">
                             Join our community of food enthusiasts . Find new recipes, share your creation and connect with people who share passion
                         </p>
                     </div>
@@ -44,6 +44,7 @@ const Home = () => {
 
             </div>
             <section className='pt-16'>
+
                 <motion.section
                     className=''
                     initial={{ opacity: 0, y: 50 }}
@@ -100,7 +101,7 @@ const Home = () => {
                             <img className='w-20 h-20 rounded-full border-4  mb-4' src="https://i.ibb.co/bjqv46YM/tipped-ear-4.webp" alt="" />
                             <h3 className='text-lg font-semibold text-purple-700'>John Cina</h3>
                             <p className='text-gray-600 mt-2 text-sm'>
-                                Lorem ipsum dolor sit amet.
+                                It is Very Good 
                             </p>
                         </div>
                     </div>
@@ -109,7 +110,7 @@ const Home = () => {
                             <img className='w-20 h-20 rounded-full border-4 mb-4' src="https://i.ibb.co/6cQQHFgW/cardinal-bird-branch.jpg" alt="" />
                             <h3 className='text-lg font-semibold text-purple-700'>Hanif</h3>
                             <p className='text-gray-600 mt-2 text-sm'>
-                                Lorem ipsum dolor sit amet.
+                                It is very beautiful
                             </p>
                         </div>
                     </div>
@@ -118,7 +119,7 @@ const Home = () => {
                             <img className='w-20 h-20 rounded-full border-4  mb-4' src="https://i.ibb.co/sdkxGgmK/trump.jpg" alt="" />
                             <h3 className='text-lg font-semibold text-purple-700'>Randy</h3>
                             <p className='text-gray-600 mt-2 text-sm'>
-                                Lorem ipsum dolor sit amet.
+                                It is good experience
                             </p>
                         </div>
                     </div>
