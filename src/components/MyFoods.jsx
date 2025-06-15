@@ -15,12 +15,12 @@ const MyFoods = () => {
                 .then(res => res.json())
                 .then(data => {
                     setMyFood(data)
-                     setLoading(false)
+                    setLoading(false)
 
                 });
-                    
-                    
-           
+
+
+
         }
     }, [user])
     const handleDelete = (_id) => {

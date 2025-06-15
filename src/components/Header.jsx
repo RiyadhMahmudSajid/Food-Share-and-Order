@@ -2,13 +2,14 @@ import React, { use } from 'react';
 import { Link, NavLink } from 'react-router';
 import './Header.css'
 import { AuthContext } from '../provider/AuthProvider';
+import { toast } from 'react-toastify';
 const Header = () => {
   const { user, logoutUser } = use(AuthContext)
   const handleLogout = () => {
     logoutUser().then(() => {
-      alert('success')
+      toast.success('success')
     }).catch(() => {
-      alert('unsuccess')
+      toast.error('unsuccess')
     })
   }
   const links = <>
@@ -33,7 +34,7 @@ const Header = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-xl "><i className='text-orange-500'>BDFoodSharing</i></a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -42,16 +43,16 @@ const Header = () => {
       </div>
       <div className="navbar-end">
         {
-          user ? <button onClick={handleLogout} className="btn">Logout</button> : <Link to="/auth/login" className="btn">Login</Link>
+          user ? <button onClick={handleLogout} className="btn bg-orange-500 border-none">Logout</button> : <Link to="/auth/login" className="btn">Login</Link>
         }
         {
-          user ? " " : <Link to="/auth/signup" className="btn">Register</Link>
+          user ? " " : <Link to="/auth/signup" className="btn bg-orange-500 border-none mx-4">Register</Link>
         }
 
         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-          <div className="w-10 rounded-full">
+          <div className="w-10 rounded-full ">
             <img
-              alt="Tailwind CSS Navbar component"
+              alt="Profile"
               src={`${user && user.photoURL}`} />
           </div>
         </div>

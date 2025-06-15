@@ -39,21 +39,21 @@ const AvailableFoodDetails = () => {
      }
     return (
         <div>
-            <div className="card bg-base-100 w-96 shadow-sm">
+            <div className="card bg-base-100 w-96 shadow-sm mt-6 mx-auto">
                 <figure>
                     <img
                         src={FoodImage}
                         alt="Shoes" />
                 </figure>
                 <div className="card-body">
-                    <h2 className="card-title">{foodName}</h2>
-                    <p>{quantity}</p>
-                    <p>{Location}</p>
+                    <h2 className="card-title">{foodName}😋</h2>
+                    <p><span className='font-semibold'>Quantity:</span> {quantity}</p>
+                    <p><span className='font-semibold'>Pickup Location:</span> {Location}</p>
                     <p>{ExpiredDate}</p>
                     <p>{FoodStatus}</p>
                     <p>{Notes}</p>
 
-                    <button className="btn" onClick={() => document.getElementById('my_modal_1').showModal()}>open modal</button>
+                    <button className="btn bg-orange-400" onClick={() => document.getElementById('my_modal_1').showModal()}>Request Food</button>
                 </div>
             </div>
             <dialog id="my_modal_1" className="modal">
@@ -68,15 +68,16 @@ const AvailableFoodDetails = () => {
                     <p>{Location}</p>
                     <p>{ExpiredDate}</p>
 
-                    <textarea className=' textarea textarea-bordered w-full' value={note} onChange={e => setNote(e.target.value)}>
+                    <textarea className=' textarea textarea-bordered w-full' value={note} onChange={e => setNote(e.target.value)} required>
 
                     </textarea>
 
-                    <p className="py-4">Press ESC key or click the button below to close</p>
+                    <button  onClick={handleRequest} className="btn">Submit</button>
                     <div className="modal-action">
                         <form method="dialog">
                             {/* if there is a button in form, it will close the modal */}
-                            <button onClick={handleRequest} className="btn">Close</button>
+                            
+                            <button  className="btn">close</button>
                         </form>
 
                     </div>
