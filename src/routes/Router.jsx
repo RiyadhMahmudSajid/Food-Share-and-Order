@@ -34,7 +34,7 @@ const router = createBrowserRouter([
         element:<PrivateRoute>
           <AvailableFoodDetails></AvailableFoodDetails>
         </PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:3000/foods/${params.id}`)
+        loader: ({params}) => fetch(`https://food-sharing-server-amber.vercel.app/foods/${params.id}`)
       },
       {
         path:"/AddFood",
@@ -54,7 +54,7 @@ const router = createBrowserRouter([
      
       {
         path:"/update/:id",
-        loader: ({params}) => fetch(`http://localhost:3000/foods/${params.id}`),
+        loader: ({params}) => fetch(`https://food-sharing-server-amber.vercel.app/foods/${params.id}`),
         element:<Update></Update>
       },
       {

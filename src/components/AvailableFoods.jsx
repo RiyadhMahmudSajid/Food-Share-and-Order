@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 const fetchFoods = async ({ queryKey }) => {
     const [_key, search, sort] = queryKey;
-    const res = await fetch(`http://localhost:3000/foods?searchParams=${search}&sort=${sort}`)
+    const res = await fetch(`https://food-sharing-server-amber.vercel.app/foods?searchParams=${search}&sort=${sort}`)
     return res.json()
 }
 
@@ -32,7 +32,7 @@ const AvailableFoods = () => {
     
     const {mutate: requestFood} = useMutation({
         mutationFn: async (id) =>{
-            const res = await fetch(`http://localhost:3000/foods/${id}`, {
+            const res = await fetch(`https://food-sharing-server-amber.vercel.app/foods/${id}`, {
             method: 'PATCH',
             headers: { 'content-Type': 'application/json' },
             body: JSON.stringify({FoodStatus:'requested'})
@@ -57,7 +57,7 @@ const AvailableFoods = () => {
                 <input type="text"
                     placeholder="Search"
                     onChange={(e) => setSearch(e.target.value)}
-                    className="input input-warning" />
+                    className="input input-warning mb-2" />
                 <div className='flex gap-2'>
                     <button className='btn btn-secondary' onClick={() => setSort('asc')}>Sort ASC</button>
                     <button className='btn btn-secondary' onClick={() => setSort('desc')}>Sort DESC</button>

@@ -9,7 +9,7 @@ const FoodRequest = () => {
     const [loading, setLoading] = useState(true)
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:3000/food-req?email=${user.email}`)
+            fetch(`https://food-sharing-server-amber.vercel.app/food-req?email=${user.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setMyFood(data)

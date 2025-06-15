@@ -12,7 +12,7 @@ const Update = () => {
         const form = e.target;
         const formData = new FormData(form);
         const foodData = Object.fromEntries(formData.entries())
-        fetch(`http://localhost:3000/foods/${_id}`, {
+        fetch(`https://food-sharing-server-amber.vercel.app/foods/${_id}`, {
             method: 'PUT',
             headers: { 'content-Type': 'application/json' },
             body: JSON.stringify(foodData)

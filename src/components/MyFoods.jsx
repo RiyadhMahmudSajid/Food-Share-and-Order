@@ -11,7 +11,7 @@ const MyFoods = () => {
     const [loading, setLoading] = useState(true)
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:3000/food?email=${user.email}`)
+            fetch(`https://food-sharing-server-amber.vercel.app/food?email=${user.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setMyFood(data)
@@ -24,7 +24,7 @@ const MyFoods = () => {
         }
     }, [user])
     const handleDelete = (_id) => {
-        console.log(_id);
+        
 
         Swal.fire({
             title: "Are you sure?",
@@ -35,11 +35,11 @@ const MyFoods = () => {
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
-            console.log(result.isConfirmed)
+            
             if (result.isConfirmed) {
 
                 // start deleting the coffee
-                fetch(`http://localhost:3000/foods/${_id}`, {
+                fetch(`https://food-sharing-server-amber.vercel.app/foods/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

@@ -31,7 +31,7 @@ const Login = () => {
                 navigate(`${location.state ? location.state : "/"}`)
             })
             .catch(() => {
-                alert("invalid account")
+                toast.error("invalid account")
             })
     }
 
@@ -52,7 +52,7 @@ const Login = () => {
                         <div className='relative'>
                             <label className="label">Password</label>
                             <input type={show ? 'text' : 'password'} name="password" className="input" placeholder="Password" required/>
-                            <button onClick={() => { setShow(!show) }} className='btn btn-xs absolute top-6.5 right-6'>
+                            <button type='button' onClick={() => { setShow(!show) }} className='btn btn-xs absolute top-6.5 right-6'>
                                 {
                                     show ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>
                                 }

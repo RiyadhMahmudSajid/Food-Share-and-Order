@@ -7,7 +7,7 @@ import { Typewriter } from 'react-simple-typewriter';
 const Home = () => {
     const [topRecipes, setTopRecipes] = useState([])
     useEffect(() => {
-        fetch('http://localhost:3000/top-food')
+        fetch('https://food-sharing-server-amber.vercel.app/top-food')
             .then(res => res.json())
             .then(data => setTopRecipes(data));
     })

@@ -25,7 +25,7 @@ const AvailableFoodDetails = () => {
 
 
         }
-        fetch('http://localhost:3000/food-req', {
+        fetch('https://food-sharing-server-amber.vercel.app/food-req', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(requestData)

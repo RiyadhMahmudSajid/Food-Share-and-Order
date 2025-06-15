@@ -10,11 +10,11 @@ const AddFood = () => {
         const form = e.target;
         const formData = new FormData(form);
         const foodData = Object.fromEntries(formData.entries())
-        // console.log(foodData)
+       
 
         //save job to the database
 
-        axios.post('http://localhost:3000/foods', foodData)
+        axios.post('https://food-sharing-server-amber.vercel.app/foods', foodData)
             .then(function (response) {
                 if (response.data.insertedId) {
                  
@@ -28,7 +28,7 @@ const AddFood = () => {
                 }
             })
             .catch(function (error) {
-                console.log(error);
+                
             });
     }
 
