@@ -59,9 +59,9 @@ const AvailableFoods = () => {
                     onChange={(e) => setSearch(e.target.value)}
                     className="input input-warning mb-2" />
                 <div className='flex gap-2'>
-                    <button className='btn btn-secondary' onClick={() => setSort('asc')}>Sort ASC</button>
-                    <button className='btn btn-secondary' onClick={() => setSort('desc')}>Sort DESC</button>
-                    <button className='btn btn-accent' onClick={() => setThree(!three)}>
+                    <button className='btn bg-orange-500 text-white' onClick={() => setSort('asc')}>Sort ASC</button>
+                    <button className='btn  bg-orange-500 text-white' onClick={() => setSort('desc')}>Sort DESC</button>
+                    <button className='btn  bg-orange-500 text-white' onClick={() => setThree(!three)}>
                         Change Layout
                     </button>
                 </div>

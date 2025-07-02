@@ -21,7 +21,7 @@ const Header = () => {
 
   </>
   return (
-    <div className="navbar  shadow-sm bg-gray-800">
+    <div className="navbar  shadow-sm bg-gray-800 ">
 
       <div className="navbar-start">
         <div className="dropdown">
@@ -43,7 +43,7 @@ const Header = () => {
       </div>
       <div className="navbar-end">
         {
-          user ? <button onClick={handleLogout} className="btn bg-orange-500 border-none mr-2">Logout</button> : <Link to="/auth/login" className="btn">Login</Link>
+          user ? <button onClick={handleLogout} className="btn bg-orange-500  text-white border-none mr-2">Logout</button> : <Link to="/auth/login" className="btn">Login</Link>
         }
         {
           user ? " " : <Link to="/auth/signup" className="btn bg-orange-500 border-none mx-4">Register</Link>

@@ -22,7 +22,7 @@ const FoodRequest = () => {
         }
     }, [user])
     return (
-        <div>
+        <div className='min-h-[70vh]'>
             {
                 loading ? (<p>Loading....</p>) : (
                     myFood.length === 0 ? (<p className='min-h-80'>You have no Food</p>) : (

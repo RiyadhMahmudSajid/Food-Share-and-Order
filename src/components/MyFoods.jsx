@@ -64,7 +64,7 @@ const MyFoods = () => {
     }
 
     return (
-        <div>
+        <div className='min-h-[70vh]'>
 
             {
                 loading ? (<p>Loading...</p>) :

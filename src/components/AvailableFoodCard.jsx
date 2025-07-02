@@ -16,7 +16,7 @@ const AvailableFoodCard = ({ food,onRequest }) => {
         navigate(`food/${_id}`)
     }
     return (
-        <div className="card bg-base-100 shadow-sm">
+        <div className="card bg-base-100 shadow-sm min-h-[70vh]">
             <figure>
                 <img className='w-full h-48 object-cover'
                     src={FoodImage}
@@ -28,7 +28,7 @@ const AvailableFoodCard = ({ food,onRequest }) => {
                 <h2 className="">{Location}</h2>
                 
                 <div className="card-actions justify-end">
-                   <Link to={`/foods/${_id}`}><button onClick={handleViewDetails} className="btn btn-primary">View Details</button></Link>
+                   <Link to={`/foods/${_id}`}><button onClick={handleViewDetails} className="btn  bg-orange-500 text-white">View Details</button></Link>
                 </div>
             </div>
         </div>
