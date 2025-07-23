@@ -4,6 +4,7 @@ import Featured from './Featured';
 import { motion } from 'framer-motion';
 import { Typewriter } from 'react-simple-typewriter';
 import Blog from './Blog';
+import HeroBanner from './HeroBanner';
 
 const Home = () => {
     const [topRecipes, setTopRecipes] = useState([])
@@ -15,35 +16,7 @@ const Home = () => {
 
     return (
         <div>
-            <div
-                className="hero min-h-[70vh]"
-                style={{
-                    backgroundImage:
-                        `url(${banner})`,
-                }}
-            >
-                <div className="hero-overlay"></div>
-                <div className="hero-content text-neutral-content text-center">
-                    <div className="px-4">
-                        <h1 className="mb-5 text-5xl font-bold">Discover & Share {' '} <span className='text-orange-500'><Typewriter
-
-                            words={['Delicious', 'Unique', 'Spicy ', 'Tasty']}
-                            loop={true}
-                            cursor
-                            cursorStyle='|'
-                            typeSpeed={30}
-                            deleteSpeed={20}
-                            delaySpeed={700}></Typewriter>
-
-                        </span> {''} Recipies</h1>
-                        <p className="mb-5 pl-8">
-                            Join our community of food enthusiasts . Find new recipes, share your creation and connect with people who share passion
-                        </p>
-                    </div>
-                </div>
-
-
-            </div>
+           <HeroBanner></HeroBanner>
             <section className='pt-16'>
 
                 <motion.section
